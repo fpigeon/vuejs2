@@ -125,6 +125,11 @@ We will be doing a lot of event listeners so we can do the shorthand of `v-on:cl
 
 `<button @click="addName">Add Name</button>`
 
+## Lesson 5: Attribute and Class Binding
+
+
+
+
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools

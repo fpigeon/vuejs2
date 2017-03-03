@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Learning Vuejs</title>
-
+    <style>
+        .color-red {color: red;}
+        .color-blue {color: blue;}
+        .is-loading {background: red;}
+    </style>
 </head>
 <body>
     <div id="root">
+        <h1 :class="className">Hello World</h1>
+        <button v-bind:title="title">Hover over me</button>
+        <!--shorthand-->
+        <button :title="title">Hover over me</button>
 
-        <ul>
-            <li v-for="name in names">
-                {{ name }}
-            </li>
-        </ul>
+        <h1>Another Example</h1>
+        <button :class="{'is-loading' : isLoading }"
+                @click="toggleClass" >
+                Toggle Me
+        </button>
 
-        <input id="input" type="text" v-model="newName">
-        <!--<button v-on:click="addName">Add Name</button>-->
-        <button @click="addName">Add Name</button>
 
     </div>
 
@@ -30,13 +35,13 @@
         var app = new Vue ({
             el: '#root',
             data: {
-                newName: '',
-                names: ['Frank', 'Kay', 'Romeo', 'Caleb', 'Carlos']
+                title: 'now set thru js',
+                className: 'color-blue',
+                isLoading: false
             },
             methods: {
-                addName() {
-                    this.names.push(this.newName)
-                    this.newName = ''
+                toggleClass() {
+                    this.isLoading = true
                 }
             }
 

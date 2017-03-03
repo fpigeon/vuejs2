@@ -11,67 +11,15 @@
 </head>
 <body>
     <div id="root">
-        <h1>All Tasks</h1>
-        <ul>
-            <li v-for="(task,key) in tasks">
-                {{ task.description }}
-                <button @click="toggleComplete(key)">Complete</button>
-            </li>
-        </ul>
+        <task>Go to the store</task>
+        <task>Go to the bank</task>
+        <task>Go to Geekdom</task>
 
-         <h1>Incompleted Tasks</h1>
-        <ul>
-            <li v-for="task in incompleteTasks" v-text="task.description"></li>
-        </ul>
-
-        <h1>Completed Tasks</h1>
-        <ul>
-            <li v-for="task in completeTasks" v-text="task.description"></li>
-        </ul>
     </div>
 
 
 
     <script src="https://unpkg.com/vue@2.2.1"></script>
-    <script>
-
-        var app = new Vue ({
-            el: '#root',
-            data: {
-                message: 'All Tasks',
-                tasks: [
-                    { description: 'Go to the store', completed: false},
-                    { description: 'Pick up milk', completed: true},
-                    { description: 'Make a sandwich', completed: false},
-                    { description: 'Peanut Butter Jelly', completed: false},
-                    { description: 'Clean Room', completed: false},
-
-                ]
-            },
-            methods: {
-                toggleComplete(key) {
-                    task = this.tasks[key]
-                    task.completed = task.completed ? false : true;
-                }
-            },
-            computed: {
-                incompleteTasks() {
-                    return this.tasks.filter( task =>  !task.completed )
-                },
-                completeTasks() {
-                      return this.tasks.filter( task =>  task.completed )
-                },
-                reversedMessage() {
-                    return this.message.split('').reverse().join('')
-                }
-            }
-
-
-        })
-
-
-
-
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>

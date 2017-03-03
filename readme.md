@@ -127,7 +127,9 @@ We will be doing a lot of event listeners so we can do the shorthand of `v-on:cl
 
 ## Lesson 5: Attribute and Class Binding
 
+## Lesson 6: Computed Properties
 
+## Lesson 7: Components 101
 
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/

@@ -78,6 +78,53 @@ or we could also use `v-text` to simplify our code.
 <li v-for="name in names" v-text="name">
 ```
 
+## Lesson 4: Event Listeners
+
+Event Listeners can easily be added by using `v-on:click`. We can fire a method `addName`by including it in after the listener like this `v-on:click="addName"`.
+
+#### html
+
+```html
+<div id="root">
+    <ul>
+        <li v-for="name in names">
+            {{ name }}
+        </li>
+    </ul>
+
+    <input id="input" type="text" v-model="newName">
+    <button v-on:click="addName">Add Name</button>
+</div>
+```
+
+We add any custom methods in Vue by adding them to the `methods` object.
+Below we are accessing the value typed into the input via the `v-model="newName"` and adding it to the `names` array. Next we clear the content of the input by reseting `newName` to an empty string.
+
+#### js
+
+```js
+var app = new Vue ({
+    el: '#root',
+    data: {
+        newName: '',
+        names: ['Frank', 'Kay', 'Romeo', 'Caleb', 'Carlos']
+    },
+    methods: {
+        addName() {
+            this.names.push(this.newName)
+            this.newName = ''
+        }
+    }
+
+    })
+```
+
+#### Shorthand
+
+We will be doing a lot of event listeners so we can do the shorthand of `v-on:click` like this.
+
+`<button @click="addName">Add Name</button>`
+
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools

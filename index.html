@@ -6,25 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Learning Vuejs</title>
     <style>
-        .color-red {color: red;}
-        .color-blue {color: blue;}
-        .is-loading {background: red;}
+
     </style>
 </head>
 <body>
     <div id="root">
-        <h1 :class="className">Hello World</h1>
-        <button v-bind:title="title">Hover over me</button>
-        <!--shorthand-->
-        <button :title="title">Hover over me</button>
+        <h1>All Tasks</h1>
+        <ul>
+            <li v-for="(task,key) in tasks">
+                {{ task.description }}
+                <button @click="toggleComplete(key)">Complete</button>
+            </li>
+        </ul>
 
-        <h1>Another Example</h1>
-        <button :class="{'is-loading' : isLoading }"
-                @click="toggleClass" >
-                Toggle Me
-        </button>
+         <h1>Incompleted Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
 
-
+        <h1>Completed Tasks</h1>
+        <ul>
+            <li v-for="task in completeTasks" v-text="task.description"></li>
+        </ul>
     </div>
 
 
@@ -35,15 +38,34 @@
         var app = new Vue ({
             el: '#root',
             data: {
-                title: 'now set thru js',
-                className: 'color-blue',
-                isLoading: false
+                message: 'All Tasks',
+                tasks: [
+                    { description: 'Go to the store', completed: false},
+                    { description: 'Pick up milk', completed: true},
+                    { description: 'Make a sandwich', completed: false},
+                    { description: 'Peanut Butter Jelly', completed: false},
+                    { description: 'Clean Room', completed: false},
+
+                ]
             },
             methods: {
-                toggleClass() {
-                    this.isLoading = true
+                toggleComplete(key) {
+                    task = this.tasks[key]
+                    task.completed = task.completed ? false : true;
+                }
+            },
+            computed: {
+                incompleteTasks() {
+                    return this.tasks.filter( task =>  !task.completed )
+                },
+                completeTasks() {
+                      return this.tasks.filter( task =>  task.completed )
+                },
+                reversedMessage() {
+                    return this.message.split('').reverse().join('')
                 }
             }
+
 
         })
 

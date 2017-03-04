@@ -131,6 +131,49 @@ We will be doing a lot of event listeners so we can do the shorthand of `v-on:cl
 
 ## Lesson 7: Components 101
 
+## Lesson 8: Practical Component Exercise #1: Message
+
+You can create your own message components which will look like this in the markup.
+
+```html
+<message title="Hello World" body="Lorem ipsum dolor sit amet"></message>
+<message title="Hello Javascript" body="Why didn't anyone tell me Vue is so cool!"></message>
+```
+
+Behind the scenes in our JS file, we can see how to create components. Notice that we are passing in the `title` and `body`.
+To tell Vue how to handle them we add them to our props object. We place them with `{{  }}` where we want them to render. We also have a new directives named `v-show` which allows to hide and show elements. We are adding the `isVisable` to toggle the attribute from `true` to `false` once you click the button.
+
+```js
+Vue.component('message', {
+
+    props: ['title', 'body'],
+
+    data() {
+        return {
+            isVisable: true
+        }
+    },
+
+    template: `
+         <article class="message" v-show="isVisable">
+            <div class="message-header">
+                {{ title }}
+                <button class="delete" @click="isVisable = false"></button>
+            </div>
+            <div class="message-body">
+                {{ body }}
+            </div>
+        </article>
+    `
+})
+
+new Vue({
+    el:'#root',
+})
+```
+
+## Lesson 9: Practical Component Exercise #2: Modal
+
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd

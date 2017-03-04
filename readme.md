@@ -176,13 +176,13 @@ new Vue({
 
 This lesson covers using [Bulma][bulma]'s modal in Vue.
 
-First we copy the html from [Bulma][bulma] and add it to the component we make called `modal`. We have to add the `is-active` class to ensure it is fired. We'll control the hiding and showing via a custom event called `close` like this:
+First we copy the html from [Bulma][bulma] and add it to the component we make called `modal`. We have to add the `is-active` class to ensure it is fired. We'll control the hiding of the modal via a custom event called `close` like this:
 
 ```js
-<button class="modal-close" @click="$emit('close')"></button>
+@click="$emit('close')"
 ```
 
-In our root Vue app we have the `showModal` data object that will start off as false.
+In our root Vue app we have the `showModal` data object that will start off as false. This controls if the modal is visible or not.
 
 ```js
 Vue.component('modal', {

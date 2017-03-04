@@ -222,6 +222,109 @@ In our markup we have our Vue component and see our custom event listener `close
 </div>
 ```
 
+## Lesson 11: Practical Component Exercise #3: Tabs
+
+We make nav tabs with contenet using Bulma and Vue
+
+#### html
+
+```html
+<div id="root" class="container">
+
+    <tabs>
+        <tab name="About Us" :selected="true">
+            <h1>Here is some content About Us.</h1>
+        </tab>
+        <tab name="About Our Culture">
+            <h1>Here is some content About Our Culture.</h1>
+        </tab>
+        <tab name="About Our Vision">
+            <h1>Here is some content About Our Vision.</h1>
+        </tab>
+    </tabs>
+
+</div>
+```
+
+#### js
+
+```js
+Vue.component('tabs', {
+    template:`
+        <div>
+            <div class="tabs">
+                <ul>
+                    <li v-for="tab in tabs" :class="{ 'is-active': tab.isActive }">
+                        <a :href="tab.href" @click="selectTab(tab)"> {{ tab.name }} </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div className="tabs-details">
+                <slot></slot>
+            </div>
+        </div>
+    `,
+
+    data() {
+        return { tabs: [] }
+    },
+
+    created() {
+        this.tabs = this.$children;
+    },
+
+    methods: {
+        selectTab(selectedTab) {
+            this.tabs.forEach( tab => {
+                tab.isActive = (tab.name == selectedTab.name)
+            })
+        }
+    }
+
+})
+
+Vue.component('tab', {
+    template: `
+        <div v-show="isActive">
+            <slot></slot>
+        </div>
+    `,
+
+    props: {
+        name: { required: true },
+        selected: { default: false }
+    },
+
+    data() {
+        return {
+            isActive: false
+        }
+    },
+
+    computed: {
+        href() {
+            return '#' + this.name.toLowerCase().replace(/ /g, '-')
+        }
+    },
+
+    mounted() {
+        this.isActive = this.selected
+    }
+
+
+})
+
+new Vue({
+    el:'#root',
+    data: {
+        showModal: false
+    }
+})
+```
+
+
+
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools

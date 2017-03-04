@@ -15,10 +15,17 @@
 <body>
     <div id="root" class="container">
 
-        <modal v-show="showModal" @close="showModal = false">
-            <p>Insert me here</p>
-        </modal>
-        <button @click="showModal = true">Show Modal</button>
+       <tabs>
+           <tab name="About Us" :selected="true">
+               <h1>Here is some content About Us.</h1>
+           </tab>
+           <tab name="About Our Culture">
+               <h1>Here is some content About Our Culture.</h1>
+           </tab>
+           <tab name="About Our Vision">
+               <h1>Here is some content About Our Vision.</h1>
+           </tab>
+       </tabs>
 
     </div>
 

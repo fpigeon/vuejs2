@@ -15,8 +15,10 @@
 <body>
     <div id="root" class="container">
 
-        <message title="Hello World" body="Lorem ipsum dolor sit amet"></message>
-        <message title="Hello Javascript" body="Why didn't anyone tell me Vue is so cool!"></message>
+        <modal v-show="showModal" @close="showModal = false">
+            <p>Insert me here</p>
+        </modal>
+        <button @click="showModal = true">Show Modal</button>
 
     </div>
 

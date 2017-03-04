@@ -174,7 +174,55 @@ new Vue({
 
 ## Lesson 9: Practical Component Exercise #2: Modal
 
+This lesson covers using [Bulma][bulma]'s modal in Vue.
+
+First we copy the html from [Bulma][bulma] and add it to the component we make called `modal`. We have to add the `is-active` class to ensure it is fired. We'll control the hiding and showing via a custom event called `close` like this:
+
+```js
+<button class="modal-close" @click="$emit('close')"></button>
+```
+
+In our root Vue app we have the `showModal` data object that will start off as false.
+
+```js
+Vue.component('modal', {
+    template: `
+        <div class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <p>
+                        <slot></slot>
+                    </p>
+                </div>
+            </div>
+            <button class="modal-close" @click="$emit('close')"></button>
+        </div>
+    `
+})
+
+new Vue({
+    el:'#root',
+    data: {
+        showModal: false
+    }
+})
+```
+
+In our markup we have our Vue component and see our custom event listener `close`. We fire the modal using the directive `@click="showModal = true"`
+
+```html
+<div id="root" class="container">
+
+    <modal v-show="showModal" @close="showModal = false">
+        <p>Insert me here</p>
+    </modal>
+    <button @click="showModal = true">Show Modal</button>
+
+</div>
+```
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools
+[bulma]: http://bulma.io/

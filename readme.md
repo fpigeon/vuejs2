@@ -369,7 +369,39 @@ new Vue({
 })
 ```
 
+## Lesson 13: Component Communication Example #2: Event Dispatcher
 
+Here we now switch to a global instance of Vue as an event dispacther. The end result is the same as Lesson 12.
+
+#### js
+
+```js
+window.Event = new Vue()
+
+Vue.component('coupon', {
+    template: `
+        <input type="text" placeholder="Enter your coupon code" @blur="onCouponApplied"/>
+    `,
+
+    methods: {
+        onCouponApplied() {
+            Event.$emit('applied')
+        }
+    }
+})
+
+new Vue({
+    el:'#root',
+
+    data: {
+        couponApplied: false
+    },
+
+    created() {
+        Event.$on('applied', () => alert('handling it'))
+    }
+})
+```
 
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/

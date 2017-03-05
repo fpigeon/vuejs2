@@ -403,6 +403,62 @@ new Vue({
 })
 ```
 
+## Lesson 14: Named Slots in a Nutshell
+
+Here we see the power of named slots allowing us to have several slots in a component for more customization. Also in the js component we can add default data but it will be overriden if provided in the markup.
+
+#### html
+
+We can use the `template` element to just give us the raw data rather than using another element like `div` or `h1`.
+
+```html
+<div id="root" class="container">
+
+    <modal>
+        <template slot="header">My Header</template>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        <template slot="footer">
+            <a class="button is-success">Save changes</a>
+            <a class="button">Cancel</a>
+        </template>
+    </modal>
+
+    </div>
+```
+
+#### js
+
+Notice the `<slot name="someName"></slot>`.
+
+```js
+Vue.component('modal', {
+    template: `
+        <div class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                <p class="modal-card-title">
+                    <slot name="header"></slot>
+                </p>
+                <button class="delete"></button>
+                </header>
+                <section class="modal-card-body">
+                    <slot></slot>
+                </section>
+                <footer class="modal-card-foot">
+                    <slot name="footer">
+                        <a class="button is-success">Okay</a>
+                    </slot>
+                </footer>
+            </div>
+        </div>
+    `
+})
+
+new Vue({
+    el:'#root'
+})
+```
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd

@@ -15,9 +15,14 @@
 <body>
     <div id="root" class="container">
 
-       <coupon @applied="onCouponApplied"></coupon>
-
-       <h1 v-if="couponApplied">You used a coupon</h1>
+        <modal>
+            <template slot="header">My Header</template>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad maxime magni sed maiores voluptates dolor ullam, perspiciatis, neque repellat corporis aliquid ab libero odit quo iure incidunt earum accusantium.
+            <template slot="footer">
+                <a class="button is-success">Save changes</a>
+                <a class="button">Cancel</a>
+            </template>
+        </modal>
 
     </div>
 

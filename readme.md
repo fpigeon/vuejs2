@@ -323,6 +323,53 @@ new Vue({
 })
 ```
 
+## Lesson 12: Component Communication Example #1: Custom Events
+
+We learned how components can communicate with one another. In the is example the `coupon` component triggers the `h1` to show if it is triggered by the `blur` event or tabbing out of the `input`.
+
+#### html
+
+```html
+<div id="root" class="container">
+
+    <coupon @applied="onCouponApplied"></coupon>
+
+    <h1 v-if="couponApplied">You used a coupon</h1>
+
+</div>
+```
+
+#### js
+
+```js
+Vue.component('coupon', {
+    template: `
+        <input type="text" placeholder="Enter your coupon code" @blur="onCouponApplied"/>
+    `,
+
+    methods: {
+        onCouponApplied() {
+            this.$emit('applied')
+        }
+    }
+})
+
+new Vue({
+    el:'#root',
+
+    data: {
+        couponApplied: false
+    },
+
+    methods: {
+        onCouponApplied() {
+            this.couponApplied = true
+        }
+    }
+})
+```
+
+
 
 
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/

@@ -487,6 +487,10 @@ new Vue({
 })
 ```
 
+## Lesson 16:
+
+Let's begin focusing on structure, and how you'll build actual applications with Vue. That means we're ready to learn both Webpack and vue-cli. 
+
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools

@@ -460,6 +460,33 @@ new Vue({
 })
 ```
 
+## Lesson 15: Single-Use Components and Inline Templates
+
+Not every component needs to be generic and reusable. Sometimes, a single, view-specific component is exactly what the doctor ordered. In this episode, we'll review the basic concept, and then discuss when you might reach for the inline-template attribute to nest your template directly in your HTML file.
+
+```html
+<progress-view inline-template>
+    <div>
+        <h1>Your Progress through this course is {{ completionRate }}</h1>
+        <p><button @click="completionRate += 10">Update Complettion Rate</button></p>
+    </div>
+</progress-view>
+```
+
+```js
+Vue.component('progress-view', {
+    data() {
+        return {
+            completionRate: 50
+        }
+    }
+})
+
+new Vue({
+    el:'#root'
+})
+```
+
 [laracast]: https://laracasts.com/series/learn-vue-2-step-by-step/
 [chrome-vue]:https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
 [vue-dev-gh]: https://github.com/vuejs/vue-devtools

@@ -15,14 +15,12 @@
 <body>
     <div id="root" class="container">
 
-        <modal>
-            <template slot="header">My Header</template>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad maxime magni sed maiores voluptates dolor ullam, perspiciatis, neque repellat corporis aliquid ab libero odit quo iure incidunt earum accusantium.
-            <template slot="footer">
-                <a class="button is-success">Save changes</a>
-                <a class="button">Cancel</a>
-            </template>
-        </modal>
+        <progress-view inline-template>
+            <div>
+                <h1>Your Progress through this course is {{ completionRate }}</h1>
+                <p><button @click="completionRate += 10">Update Complettion Rate</button></p>
+            </div>
+        </progress-view>
 
     </div>
 
